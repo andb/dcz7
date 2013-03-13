@@ -1,6 +1,6 @@
 <?php
 
-class MigrateDrupalCZUsers extends Migration {
+class DrupalCZUsers extends Migration {
   public function __construct() {
     parent::__construct(MigrateGroup::getInstance('examplegroup'));
 
