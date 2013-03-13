@@ -1,0 +1,17 @@
+<?php
+
+define('D6_DB', 'drupalcz');
+
+// abstract
+require_once 'terms.inc';
+
+// users
+require_once 'users.inc';
+
+// nodes
+require_once 'blogposts.inc';
+
+// terms
+require_once 'categories.inc';
+require_once 'tags.inc';
+require_once 'forums.inc';
