@@ -46,9 +46,14 @@ class MigrateDrupalCZBlogposts extends Migration {
     while ($row2 = $result->fetch()) {
       $tids[] = $row2->tid;
     }
-    dpm($tids);
 
-
+    $entity->field_tax_category = array(LANGUAGE_NONE => array());
+    foreach ($tids as $tid) {
+      $entity->field_tax_category[LANGUAGE_NONE][] = array('tid' => $tid); 
+    } 
+    
+return;
+// @TODO
 
     // ATACHEMENTS
     $query = db_select(D6_DB . '.upload', 'u');
@@ -63,7 +68,6 @@ class MigrateDrupalCZBlogposts extends Migration {
       $files[] = $row2;
     }
 
-// @TODO
     if (FALSE and $files) {
       $fields = field_info_instances('node', 'blog');
       $path = 'public://' . $fields['field_attachment']['settings']['file_directory'];
@@ -84,7 +88,7 @@ class MigrateDrupalCZBlogposts extends Migration {
           $entity->field_attachment[LANGUAGE_NONE][] = (array) $file;
         }
         else {
-          dpm('File was not uploaded.');
+          drupal_set_message(t('File was not uploaded.'), 'error');
         }
       }
     }
