@@ -528,11 +528,10 @@ if (file_exists($local_settings_filename)) {
 
 /* Include memcache when on Acquia hosting */
 if (!empty($conf['acquia_hosting_site_info']) && !empty($conf['memcache_servers'])) {
-  $conf['cache_inc'] = './sites/all/modules/contrib/memcache/memcache.inc';
+  $conf['cache_backends'][] = './sites/all/modules/contrib/memcache/memcache.inc';
+  $conf['cache_default_class'] = 'MemCacheDrupal';
+  $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
   $conf['memcache_key_prefix'] = 'drupal.cz';
-  $conf['memcache_bins'] = array(
-    'cache' => 'default',
-  );
 }
 
 /**
