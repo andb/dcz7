@@ -1,6 +1,6 @@
 <?php
 
 class DrupalCZTermsCategories extends DrupalCZTerms {
-  public $voc = 'category';
+  public $voc = 'tagy';
   public $vid = 4;
 }

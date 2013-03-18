@@ -3,20 +3,19 @@
 function drupalcz_migrate_migrate_api() {
   $api = array(
     'api' => 2,
-    'migrations' => array(   
+    'migrations' => array(
       'DrupalCZTermsCategories' => array('class_name' => 'DrupalCZTermsCategories'),
-      'DrupalCZTermsTags'       => array('class_name' => 'DrupalCZTermsTags'),    
-      'DrupalCZTermsForums'      => array('class_name' => 'DrupalCZTermsForums'),      
-      
+      'DrupalCZTermsForums'      => array('class_name' => 'DrupalCZTermsForums'),
+
       'DrupalCZCommentsArticles' => array('class_name' => 'DrupalCZCommentsArticles'),
-      'DrupalCZCommentsBlogs'    => array('class_name' => 'DrupalCZCommentsBlogs'),     
+      'DrupalCZCommentsBlogs'    => array('class_name' => 'DrupalCZCommentsBlogs'),
       'DrupalCZCommentsForums'   => array('class_name' => 'DrupalCZCommentsForums'),
-      
+
       'DrupalCZNodesArticles' => array('class_name' => 'DrupalCZNodesArticles'),
-      'DrupalCZNodesBlogs' => array('class_name' => 'DrupalCZNodesBlogs'),      
+      'DrupalCZNodesBlogs' => array('class_name' => 'DrupalCZNodesBlogs'),
       'DrupalCZNodesForums' => array('class_name' => 'DrupalCZNodesForums'),
-         
-      'DrupalCZUsers' => array('class_name' => 'DrupalCZUsers'),      
+
+      'DrupalCZUsers' => array('class_name' => 'DrupalCZUsers'),
     ),
   );
 

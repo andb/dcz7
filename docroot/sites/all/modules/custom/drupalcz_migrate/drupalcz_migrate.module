@@ -10,7 +10,6 @@ require_once 'comments/comments-forums.inc';
 require_once 'terms/terms.inc';
 require_once 'terms/terms-categories.inc';
 require_once 'terms/terms-forums.inc';
-require_once 'terms/terms-tags.inc';
 
 require_once 'nodes/nodes.inc';
 require_once 'nodes/nodes-articles.inc';
