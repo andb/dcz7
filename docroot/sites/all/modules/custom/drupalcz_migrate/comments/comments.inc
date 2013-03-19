@@ -5,17 +5,17 @@ abstract class DrupalCZComments extends Migration {
   public $target;
   public $pidDB;
   public $nidDB;
-  
-  public function __construct() {   
+
+  public function __construct() {
     parent::__construct(MigrateGroup::getInstance('examplegroup'));
 
     $this->description = t('Migrate comments');
     $query = db_select(D6_DB . '.comments', 'c');
-    $query->join(D6_DB . '.node', 'n', 'n.nid = c.nid'); 
+    $query->join(D6_DB . '.node', 'n', 'n.nid = c.nid');
     $query->fields('c')
       ->condition('n.type', $this->source)
       ->orderBy('c.pid', 'ASC');
-    
+
     $this->source = new MigrateSourceSQL($query);
     $this->destination = new MigrateDestinationComment('comment_node_' . $this->target);
     $this->map = new MigrateSQLMap($this->machineName,
@@ -38,34 +38,34 @@ abstract class DrupalCZComments extends Migration {
     $this->addFieldMapping('hostname', 'hostname');
     $this->addFieldMapping('comment_body', 'comment');
     $this->addFieldMapping('created', 'created');
-    $this->addFieldMapping('status', 'status');
+    $this->addFieldMapping('status')->defaultValue(TRUE);
     $this->addFieldMapping('thread', 'thread');
     $this->addFieldMapping('name', 'name');
     $this->addFieldMapping('mail', 'mail');
     $this->addFieldMapping('homepage', 'homepage');
   }
-  
-  public function prepare($entity, stdClass $row) {  
-    $entity->nid = $this->newNidGet($row->nid);    
+
+  public function prepare($entity, stdClass $row) {
+    $entity->nid = $this->newNidGet($row->nid);
     $entity->pid = $this->newPidGet($row->pid);
   }
 
   public function newNidGet($old) {
     $result = db_query('SELECT destid1 FROM {' . $this->nidDB . '} WHERE sourceid1 = :old', array(':old' => $old));
-    $new = $result->fetch()->destid1;    
-    
+    $new = $result->fetch()->destid1;
+
     return $new;
   }
-  
-  public function newPidGet($old) {        
+
+  public function newPidGet($old) {
     if ($old) {
       $result = $parent = db_query('SELECT destid1 FROM {' . $this->pidDB . '} WHERE sourceid1 = :pid', array(':pid' => $old));
-      $new = $result->fetch()->destid1; 
+      $new = $result->fetch()->destid1;
     }
     else {
       $new = 0;
     }
-    
+
     return $new;
   }
 }
